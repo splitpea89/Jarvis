@@ -27,7 +27,6 @@ deactivate () {
         unset _OLD_VIRTUAL_PS1
     fi
 
-    unset OPENAI_API_KEY
     unset VIRTUAL_ENV
     unset VIRTUAL_ENV_PROMPT
     if [ ! "${1:-}" = "nondestructive" ] ; then
@@ -68,5 +67,3 @@ fi
 if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
     hash -r 2> /dev/null
 fi
-
-export OPENAI_API_KEY=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

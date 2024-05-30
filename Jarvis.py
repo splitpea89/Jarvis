@@ -1,6 +1,7 @@
 from openai import OpenAI
 from gtts import gTTS
 import pygame
+from keys import get_openai_key, get_picovoice_key # This is gitignored; has openai api key and picovoice key
 
 import struct
 import wave
@@ -16,8 +17,10 @@ porcupine = None
 pa = None
 audio_stream = None
 
+os.environ['OPENAI_API_KEY'] = get_openai_key()
+
 leopard = pvleopard.create(
-    access_key="LwNC36TudxK3luFLXerYXDwiUOgvI0dziuux6ALlerMaPCqYxYqsfg=="
+    access_key=get_picovoice_key()
 )
 
 recorder = PvRecorder(
@@ -54,7 +57,7 @@ def generate_text(prompt):
 
 
 try:
-    porcupine = pvporcupine.create("LwNC36TudxK3luFLXerYXDwiUOgvI0dziuux6ALlerMaPCqYxYqsfg==", keywords=["jarvis"])
+    porcupine = pvporcupine.create(get_picovoice_key(), keywords=["jarvis"])
     print("porcupine created")
     pa = pyaudio.PyAudio()
     print("pa created")
